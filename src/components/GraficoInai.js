@@ -31,13 +31,23 @@ class GraficoInai extends React.Component {
                             .attr("height", 300)
                             .attr('position', 'relative');
             
+            // Agregamos el tooltip deseado
             let tooltip = d3.select('#chart')
                             .append('div')
                             .attr('class', 'tooltip')
                             .style('z-index', '10000')
                             .style('position', 'absolute')
-                            .style('visibility', 'hidden')
+                            .style('visibility', 'hidden');
 
+            // Agregamos título al gráfico
+            svg.append("text")
+                .attr("x", 300)
+                .attr("y", 30 )
+                .attr('text-anchor', "middle")
+                .style('text-decoration', 'underline')
+                .text("Población en México de los años 1969-2018");
+
+            // Agregamos las rectas
             svg.selectAll("rect")
                 .data(data.data.map(x=> x))
                 .enter()
