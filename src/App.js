@@ -15,7 +15,7 @@ class App extends React.Component {
 	}
 	
 	async informacion() {
-		let data = await fetch('http://api.worldbank.org/v2/country/mx/indicator/SP.POP.TOTL?format=json').then(res => res.json());
+		let data = await fetch('https://api.worldbank.org/v2/country/mx/indicator/SP.POP.TOTL?format=json').then(res => res.json());
 		// console.log(data[1]);
 		let resultado = data[1].map(x => {
 			return {year:x.date, people:x.value}
