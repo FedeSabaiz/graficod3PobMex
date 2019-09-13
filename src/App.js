@@ -34,13 +34,15 @@ class App extends React.Component {
 	render() { 
 		
 		
+		console.log(window.innerWidth)
 		return ( 
 				<div>
 					<h1>Panel de control</h1>
-				
-					<GraficoInai data={this.state.resultado}/>
 
-					<GrafInaiResponsive data={this.state.resultado}/>
+					{ window.innerWidth > 768 ? <GraficoInai data={this.state.resultado}/> : <GrafInaiResponsive data={this.state.resultado}/> }
+					
+
+					
 				</div>
 		);
 	}

@@ -8,7 +8,7 @@ const GrafInaiResponsive = (props) => {
         // console.log(data);
         // data.data.reverse();
         // Declaramos la scala x 
-        const xScale = d3.scaleLinear().domain([1969, 1990])
+        const xScale = d3.scaleLinear().domain(['1969', '1990'])
                                         .range([25, 500]);
         
         // Declaramos la scala y 
@@ -25,8 +25,10 @@ const GrafInaiResponsive = (props) => {
         // En este caso se seleccionó a body directamente.
         const svg = d3.select("#chart")
                         .append("svg")
-                        .attr("width", 550)
-                        .attr("height", 300)
+                        // Para ser responsive
+                        .attr('viewBox', `0 0 550 300`)
+                        // .attr("width", 550)
+                        // .attr("height", 300)
                         .attr('position', 'relative');
         
         // Agregamos el tooltip deseado
@@ -55,10 +57,10 @@ const GrafInaiResponsive = (props) => {
             .enter()
             .append("rect")
             .attr("x", (d, i) => {
-                return 25 + i * 22.3 // separación entre rectas
+                return 25 + i * 22.2 // separación entre rectas
             })
             .attr("y", (d, i) => {
-                console.log(d);
+                // console.log(d);
                 return 280- d.people / 1000000 // Esta linea es para invertir la tabla
             })
             .attr("width", 10)
@@ -102,8 +104,9 @@ const GrafInaiResponsive = (props) => {
         
         const svg1 = d3.select("#chart1")
                         .append("svg")
-                        .attr("width", 550)
-                        .attr("height", 300)
+                        .attr('viewBox', `0 0 550 300`)
+                        // .attr("width", 550)
+                        // .attr("height", 300)
                         .attr('position', 'relative');
         
         // Agregamos el tooltip deseado
@@ -135,7 +138,7 @@ const GrafInaiResponsive = (props) => {
                 return 25 + i * 17.2 // separación entre rectas
             })
             .attr("y", (d, i) => {
-                console.log(d);
+                // console.log(d);
                 return 280- d.people / 1000000 // Esta linea es para invertir la tabla
             })
             .attr("width", 10)

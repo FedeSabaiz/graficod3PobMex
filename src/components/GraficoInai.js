@@ -27,8 +27,9 @@ class GraficoInai extends React.Component {
             // En este caso se seleccionó a body directamente.
             const svg = d3.select("#chart")
                             .append("svg")
-                            .attr("width", 1100)
-                            .attr("height", 300)
+                            .attr('viewBox', `0 0 1050 300`)
+                            // .attr("width", 1100)
+                            // .attr("height", 300)
                             .attr('position', 'relative');
             
             // Agregamos el tooltip deseado
