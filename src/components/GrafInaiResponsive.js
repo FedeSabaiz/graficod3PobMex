@@ -6,7 +6,7 @@ const GrafInaiResponsive = (props) => {
     
     function drawChart(data) {
         // console.log(data);
-        // data.data.reverse();
+        data.data.reverse();
         // Declaramos la scala x 
         const xScale = d3.scaleLinear().domain(['1969', '1990'])
                                         .range([25, 500]);
@@ -41,7 +41,7 @@ const GrafInaiResponsive = (props) => {
 
         // Agregamos título al gráfico
         svg.append("text")
-            .attr("x", 300)
+            .attr("x", 270)
             .attr("y", 30 )
             .attr('text-anchor', "middle")
             .style('text-decoration', 'underline')
@@ -64,21 +64,35 @@ const GrafInaiResponsive = (props) => {
                 return 280- d.people / 1000000 // Esta linea es para invertir la tabla
             })
             .attr("width", 10)
-            .attr("height", (d, i) => {
-                return d.people / 1000000
-            } )
-            .attr("fill", "navy")
-            .attr("class", "bar")
-            .on('mouseover', function(d){
-                tooltip.text(`La población fue de ${d.people} en el año ${d.year}`);
-                return tooltip.style('visibility', 'visible').style('background', "white")
-            })
-            .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-30)+"px").style("left",(d3.event.pageX+10)+"px");})
-            .on("mouseout", function(){
-                return tooltip.style("visibility", "hidden");
+            .transition()
+            .delay(function(d, i) { return i * 50; })
+            .on("start", function repeat() {
+                d3.active(this)
+                    .attr("height", (d, i) => {
+                        return d.people / 1000000
+                    })
+                  .transition()
+                    .on("start", repeat);
             });
             
-        const xAxis = d3.axisBottom(xScale);
+            
+            
+            // Añadimos el efecto de mouse para las barras
+            svg.selectAll("rect")
+                .attr("fill", "navy")
+                .attr("class", "bar")
+                .on('mouseover', function(d){
+                    tooltip.text(`La población fue de ${d.people} en el año ${d.year}`);
+                    return tooltip.style('visibility', 'visible').style('background', "white")
+                })
+                .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-30)+"px").style("left",(d3.event.pageX+10)+"px");})
+                .on("mouseout", function(){
+                    return tooltip.style("visibility", "hidden");
+                });
+            
+            
+        const xAxis = d3.axisBottom(xScale)
+                        .tickFormat(d3.format('d'));// Para formatear la fecha. Antes (1,990)
 
         const yAxis = d3.axisLeft(yScale);
 
@@ -119,7 +133,7 @@ const GrafInaiResponsive = (props) => {
 
         // Agregamos título al gráfico
         svg1.append("text")
-            .attr("x", 300)
+            .attr("x", 270)
             .attr("y", 30 )
             .attr('text-anchor', "middle")
             .style('text-decoration', 'underline')
@@ -135,16 +149,26 @@ const GrafInaiResponsive = (props) => {
             .enter()
             .append("rect")
             .attr("x", (d, i) => {
-                return 25 + i * 17.2 // separación entre rectas
+                return 25 + i * 17.26 // separación entre rectas
             })
             .attr("y", (d, i) => {
                 // console.log(d);
                 return 280- d.people / 1000000 // Esta linea es para invertir la tabla
             })
             .attr("width", 10)
-            .attr("height", (d, i) => {
-                return d.people / 1000000
-            } )
+            .transition()
+            .delay(function(d, i) { return i * 50; })
+            .on("start", function repeat() {
+                d3.active(this)
+                    .attr("height", (d, i) => {
+                        return d.people / 1000000
+                    })
+                  .transition()
+                    .on("start", repeat);
+            });
+         
+        // Añadimos el efecto de mouse para las barras
+        svg1.selectAll('rect')
             .attr("fill", "navy")
             .attr("class", "bar")
             .on('mouseover', function(d){
@@ -154,9 +178,11 @@ const GrafInaiResponsive = (props) => {
             .on("mousemove", function(){return tooltip1.style("top", (d3.event.pageY-30)+"px").style("left",(d3.event.pageX+10)+"px");})
             .on("mouseout", function(){
                 return tooltip1.style("visibility", "hidden");
-            });
+            })
             
-        const xAxis1 = d3.axisBottom(xScale1);
+            
+        const xAxis1 = d3.axisBottom(xScale1)
+                        .tickFormat(d3.format('d'));// Para formatear la fecha. Antes (1,990)
 
         const yAxis1 = d3.axisLeft(yScale1);
 
