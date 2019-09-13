@@ -1,6 +1,7 @@
 import React from 'react';
 import './css/custom.scss';
 import GraficoInai from './components/GraficoInai';
+import GrafInaiResponsive from './components/GrafInaiResponsive';
 
 
 class App extends React.Component {
@@ -38,6 +39,8 @@ class App extends React.Component {
 					<h1>Panel de control</h1>
 				
 					<GraficoInai data={this.state.resultado}/>
+
+					<GrafInaiResponsive data={this.state.resultado}/>
 				</div>
 		);
 	}

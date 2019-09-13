@@ -7,17 +7,17 @@ class GraficoInai extends React.Component {
     render() { 
 
         function drawChart(data) {
-            console.log(data);
+            // console.log(data);
             data.data.reverse();
-            // Declaramos la scala x para el eje x
+            // Declaramos la scala x 
             const xScale = d3.scaleLinear().domain([1969, d3.max(data.data, d => d.year)])
                                             .range([25, 1000]);
             
-            // Declaramos la scala y para el eje y
+            // Declaramos la scala y 
             const yScale = d3.scaleLinear()
                                 .domain([d3.max(data.data, d => {
-                return d.people / 1000000 
-            }), 0])
+                                    return d.people / 1000000 
+                                }), 0])
                                 .range([0, 150 - 20]);
 
             // Reiniciamos por si existe un lienzo previo vacío
@@ -91,7 +91,7 @@ class GraficoInai extends React.Component {
             drawChart(this.props)
 
         
-        console.log(this.props)
+        // console.log(this.props)
         return ( 
             <div id="chart" />
          );
