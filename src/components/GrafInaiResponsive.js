@@ -88,7 +88,7 @@ const GrafInaiResponsive = (props) => {
                 .attr("class", "bar")
                 .on('mouseover', function(d){
                     tooltip.text(`La población fue de ${formatComma(d.people)} en el año ${d.year}`);
-                    return tooltip.style('visibility', 'visible').style('background', "#468902")
+                    return tooltip.style('visibility', 'visible').style('background', "white")
                 })
                 .on("mousemove", function(d){
                     return d.year < 1980 ? tooltip.style("top", (d3.event.pageY-30)+"px").style("left",(d3.event.pageX+10)+"px") : tooltip.style("top", (d3.event.pageY-30)+"px").style("left",(d3.event.pageX-128)+"px");
