@@ -1,16 +1,49 @@
 body {
-    background: #21D4FD;
+    background: rgb(7, 7, 7);
+    overflow-x: hidden;
 }
 
+h1, h2, h3, h4, p {
+    color: white;
+}
+
+.graficos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.articulo {
+    width: 80%;
+}
+
+.graf {
+    width: 80%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+// #chart, #chart1 {
+//     height: 200px;;
+// }
+
 .bar:hover {
-    fill: #21D4FD;
+    fill: #628290;
     font-size: 50px;
 }
 
 svg {
-    background: #B721FF;
+    background: rgb(7, 7, 7);
+    color: #B1DE00;
+}
+
+g{
+    color: #b1de00;
 }
 
 .tooltip {
+    width: 100px;
+    height: 100px;
     padding: 10px;
 }

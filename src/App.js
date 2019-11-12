@@ -27,7 +27,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.informacion();
+		setInterval(this.informacion(), 1,147,483,647);
 	}
 	
 	
@@ -37,9 +37,8 @@ class App extends React.Component {
 		console.log(window.innerWidth)
 		return ( 
 				<div>
-					<h1>Panel de control</h1>
 
-					{ window.innerWidth > 768 ? <GraficoInai data={this.state.resultado}/> : <GrafInaiResponsive data={this.state.resultado}/> }
+					<GrafInaiResponsive data={this.state.resultado}/> 
 					
 
 					
